@@ -18,7 +18,7 @@ import {
   Hidden,
   Switch
 } from '@material-ui/core'
-import { useTheme } from '@material-ui/core/styles'
+import { useTheme, withStyles } from '@material-ui/core/styles'
 import MenuIcon from '@material-ui/icons/Menu'
 import AccountCircle from '@material-ui/icons/AccountCircle'
 
@@ -35,8 +35,10 @@ import History from '@material-ui/icons/History'
 
 import AddCircle from '@material-ui/icons/AddCircle'
 import SportsSoccer from '@material-ui/icons/SportsSoccer'
+import SearchIcon from '@material-ui/icons/Search'
 
 //Aplicando estilos CSS
+
 const useStyles = makeStyles(theme => ({
   root: {
     height: '100vh',
@@ -61,6 +63,7 @@ const useStyles = makeStyles(theme => ({
     paddingRight: theme.spacing(5),
     paddingLeft: theme.spacing(6)
   },
+
   icons: {
     paddingRight: theme.spacing(5)
   },
@@ -72,13 +75,21 @@ const useStyles = makeStyles(theme => ({
   },
   listItem: {
     paddingTop: 4,
-    paddingBottom: 4
+    paddingBottom: 4,
+    alignItems: 'center'
   },
+
   subheader: {
     textTransform: 'uppercase'
+  },
+  search: {
+    padding: theme.spacing(0, 0, 0, 0),
+    width: '400px'
   }
 }))
+
 //GRID DE VIDEOS
+
 const videos = [
   {
     id: 1,
@@ -157,6 +168,7 @@ const videos = [
   }
 ]
 //APLICANDO TEMA DARK
+
 function Home ({ darkMode, setDarkMode }) {
   const classes = useStyles()
   const theme = useTheme()
@@ -172,7 +184,6 @@ function Home ({ darkMode, setDarkMode }) {
           >
             <MenuIcon />
           </IconButton>
-
           <img
             src={
               theme.palette.type === 'dark'
@@ -183,6 +194,13 @@ function Home ({ darkMode, setDarkMode }) {
             className={classes.logo}
           />
           <div className={classes.grow} />
+
+          <div className={classes.search}>
+            <Button variant='outlined' endIcon={<SearchIcon />}>
+              Pesquisar
+            </Button>
+          </div>
+
           <Switch
             value={darkMode}
             onChange={() => setDarkMode(!darkMode)}
@@ -425,6 +443,7 @@ function Home ({ darkMode, setDarkMode }) {
                     alt={item.title}
                     src={item.thumb}
                   />
+
                   <Box>
                     <Typography
                       style={{ fontWeight: 600 }}
